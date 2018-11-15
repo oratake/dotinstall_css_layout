@@ -21,6 +21,11 @@ main {
   background-color: skyblue;
 }
 
+#left, #right {
+  padding: 10px;
+  box-sizing: border-box;
+}
+
 #left {
   background: limegreen;
   float: left;
@@ -29,8 +34,14 @@ main {
 
 #right {
   background: lightgreen;
-  float: left;
+  float: right;
   width: 300px;
+}
+
+.container::after {
+  content: '';
+  display: block;
+  clear: both;
 }
 
 footer {
