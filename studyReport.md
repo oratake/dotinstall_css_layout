@@ -62,6 +62,7 @@ floatを用いて、左にどちらも寄せる方法。↓あてるhtml
 </main>
 <footer>フッター</footer>
 ```
+#### 手法1: 直後にclear: both;する方法
 1. 並べたい要素(#left, #right)を`float: left;`し、widthを指定。
 ```css
 #left {
@@ -86,3 +87,35 @@ footer { clear: both; }
   <div style="clear: both;"> <!-- 実際はstyle属性などではなくcssに。 -->
 </main>
 ```
+
+#### 手法2: もっとスマートに。親要素でclearfixする
+上記の方法では、高さ出しのために空の要素を指定しているので、分かりづらい。  
+そのため、::after 疑似要素で`clear: both;`する。  
+1. .clearfixクラスを親要素に指定  
+```html
+<div class="container clearfix">
+  <div id="left">左カラム</div>
+  <div id="right">右カラム</div>
+</div>
+```
+2. `.clearfix::after`疑似要素に`clear: both;`を指定
+```css
+.container::after {
+  content: ''; /* ::afterは何かしらcontentが必要なので、空要素を指定 */
+  display: block; /* ブロック要素として指定 */
+  clear: both;
+}
+```
+
+#### 手法3: もっとさらにスマートに。親要素にoverflow: hidden;する
+```html
+<div class="container">
+  <div id="left">左カラム</div>
+  <div id="right">右カラム</div>
+</div>
+```
+```css
+.container { overflow: hidden; }
+```
+`overflow: hidden;`は、要素の領域からはみ出した部分の処理を既定するもので、hiddenはその部分を非表示にしてしまうというもの。  
+ブラウザはoverflowを指定すると、floatした子要素の高さを認識するので、こうしている様子。  
