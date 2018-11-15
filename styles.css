@@ -1,0 +1,38 @@
+body {
+}
+
+#eyecatch {
+  background: url('eyecatch.jpg') no-repeat;
+  background-size: cover;
+  background-position: 50%;
+  height: 100px;
+}
+
+.container {
+  width: 500px;
+  margin: 0 auto;
+}
+
+header {
+  background-color: tomato;
+}
+
+main {
+  background-color: skyblue;
+}
+
+#left {
+  background: limegreen;
+  float: left;
+  width: 200px;
+}
+
+#right {
+  background: lightgreen;
+  float: left;
+  width: 300px;
+}
+
+footer {
+  background-color: slategray;
+}
