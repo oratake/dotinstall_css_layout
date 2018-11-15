@@ -148,3 +148,34 @@ footer { clear: both; }
   box-sizing: border-box;
 }
 ```
+
+### 可変幅の2カラムをつくる
+widthに%の値を指定すると作れる。  
+※親要素のwidth指定は解除した  
+#### どちらも可変幅
+```css
+#left, #right { float: left; }
+#left { width: 30%; }
+#right { width: 70%; }
+```
+#### 片方が可変幅
+#rightを固定、#leftを可変にする。  
+#rightをfloatで右に固定、#leftはfloatせず、#right分のmarginをとる。  
+**注意**：floatで浮かせる要素は**先に**書かねばならない。  
+後に書いてしまうと表示が崩れるので、右側(#right)をfloatにするには、  
+**floatさせる右側を先に**書く必要がある。  
+```html
+<div class="container">
+  <div id="right">右</div> <!-- float要素は先に -->
+  <div id="left">左</div>
+</div>
+```
+```css
+#left {
+  margin-right: 200px;
+}
+#right {
+  float: right;
+  width: 200px; /* 幅固定 */
+}
+```
