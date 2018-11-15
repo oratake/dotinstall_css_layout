@@ -121,8 +121,8 @@ footer { clear: both; }
 ブラウザはoverflowを指定すると、floatした子要素の高さを認識するので、こうしている様子。  
 
 ### 2カラムに余白をつける
-#### 手法1: 片側にmarginをとる  
-親widthが500pxとして  
+親widthが500pxとして 
+#### 手法1: 片側にmarginをとる   
 ```css
 #left {
   float: left;
@@ -135,6 +135,17 @@ footer { clear: both; }
 }
 ```
 #### 手法2: floatでleftとrightにそれぞれ振る
+```css
+#left {
+  float: left;
+  width: 190px;
+}
+#right {
+  float: right;
+  width: 290px;
+}
+```
+
 #### 手法3: paddingを取る
 1. 双方のカラムにpaddingを設ける
 ```css
@@ -177,5 +188,67 @@ widthに%の値を指定すると作れる。
 #right {
   float: right;
   width: 200px; /* 幅固定 */
+}
+```
+
+### メニューのスタイル( ul > li )
+ulでつくることが多い。  
+```html
+<ul id="menu">
+  <li><a href="">Menu 1</a></li>
+  <li><a href="">Menu 2</a></li>
+  <li><a href="">Menu 3</a></li>
+</ul>
+```
+#### 余計な装飾を取る
+```css
+ul#menu {
+  padding: 0; /* 余計な余白をとる */
+  margin: 0;
+  list-style-type: none; /* 点を消す。色々指定もできる。 */
+}
+ul#menu > li > a {
+  text-decoration: none; /* リンクの下線を消す */
+}
+```
+
+#### 要素の大きさを変える
+aタグにサイズ指定をする。  
+と自分の文字しかリンクにならないので、ボタン全体をリンク指定するために、  
+aタグにもinline-blockを指定する。  
+```css
+ul#menu > li > a {
+  display: inline-block;
+  width: 80px;
+  height: 40px;
+}
+```
+
+#### 要素の並び、文字揃え
+inline-blockで要素を横並びにする。
+```css
+ul#menu > li { display: inline-block; }
+```
+文字を中央に寄せる  
+```css
+ul#menu > li > a {
+  height: 40px;
+  line-height: 40px; /* heightと一緒の値にすることで垂直方向を中央寄せ */
+  text-align: center; /* 水平方向の中央寄せ */
+}
+```
+要素同士の隙間が空いているので、以下を追加して解決する。  
+```css
+ul#menu { font-size: 0; }
+ul#menu > li > a { font-size: 16px; } /* ここで正しいfont-sizeを指定する */
+```
+
+#### マウスオーバーでデザイン変更
+カーソルが乗ったら、ゆるやかに色が変化するようにする。  
+今回の色の変化は透明度を使用。  
+```css
+ul#menu > li > a:hover {
+  opacity: 0.5; /* 0-1の透明度で変化を指定 */
+  transition: 0.3s; /* 指定時間かけて変化 */
 }
 ```
