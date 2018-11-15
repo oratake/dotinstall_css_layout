@@ -56,6 +56,7 @@ main {
 #left {
   background: limegreen;
   margin-right: 220px;
+  padding: 15px;
 }
 
 #right {
@@ -69,6 +70,54 @@ main {
   content: '';
   display: block;
   clear: both;
+}
+
+main .product {
+  position: relative;
+  display: inline-block;
+}
+
+main .price {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  font-size: 10px;
+  padding-left: 4px;
+  font-weight: bold;
+  background-color: #ccc;
+}
+
+ul#lessons {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+ul#lessons h2,
+ul#lessons p  {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+ul#lessons .lesson_img {
+  float: left;
+  width: 50px; /* 画像サイズとおなじ */
+}
+
+ul#lessons .lesson_info {
+  float: right;
+  width: 200px;
+}
+
+ul#lessons li {
+  overflow: hidden;
+}
+
+ul#lessons li:not(:last-child) {
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 footer {
