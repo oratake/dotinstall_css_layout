@@ -119,3 +119,32 @@ footer { clear: both; }
 ```
 `overflow: hidden;`は、要素の領域からはみ出した部分の処理を既定するもので、hiddenはその部分を非表示にしてしまうというもの。  
 ブラウザはoverflowを指定すると、floatした子要素の高さを認識するので、こうしている様子。  
+
+### 2カラムに余白をつける
+#### 手法1: 片側にmarginをとる  
+親widthが500pxとして  
+```css
+#left {
+  float: left;
+  width: 180px;
+  margin-right: 20px;
+}
+#right {
+  float: left;
+  width: 300px;
+}
+```
+#### 手法2: floatでleftとrightにそれぞれ振る
+#### 手法3: paddingを取る
+1. 双方のカラムにpaddingを設ける
+```css
+#left, #right { padding: 10px; }
+```
+ただし、こうするとそれぞれのwidthにpadding分が足されて、横に収まらずに溢れる。ので、  
+2. `box-sizing: border-box;`でwidthやheightに`border`,`padding`を含めるようにする
+```css
+#left, #right {
+  padding: 10px;
+  box-sizing: border-box;
+}
+```
