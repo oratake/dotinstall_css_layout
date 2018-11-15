@@ -249,9 +249,14 @@ ul#menu > li > a { font-size: 16px; } /* ここで正しいfont-sizeを指定す
 ```css
 ul#menu > li > a:hover {
   opacity: 0.5; /* 0-1の透明度で変化を指定 */
-  transition: 0.3s; /* 指定時間かけて変化 */
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out; /* 指定時間かけて変化 */
 }
 ```
+上記では、ブラウザ毎に対応させるために`-webkit-`などのベンダープレフィックスを使用している。  
+
 
 ### positionで自由に配置
 imgの右上に値札のように文字(spanで指定)を載せる。  
