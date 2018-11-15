@@ -252,3 +252,91 @@ ul#menu > li > a:hover {
   transition: 0.3s; /* 指定時間かけて変化 */
 }
 ```
+
+### positionで自由に配置
+imgの右上に値札のように文字(spanで指定)を載せる。  
+```html
+<div class="product">
+  <img src="uni.jpg" alt="">
+  <span class="price">$100.00</span>
+</div>
+```
+画像と文字(span)をdiv.productで囲っている  
+div.productiveに`position: relative;`、  
+div.priceに`position: absolute;`を指定し、位置を指定する。  
+```css
+main .product {
+  position: relative;
+  display: inline-block;
+}
+main .price {
+  position: absolute;
+  top: -5px; /* ここで指定 */
+  right: -5px;
+  font-size: 10px;
+  padding-left: 4px;
+  font-weight: bold;
+  background-color: #ccc;
+}
+```
+上記のようにマイナスで指定すると、その場所から飛び出るように配置される。  
+バッジなどに応用。  
+
+### 画像つきリスト
+左に画像、右側に文章が並ぶリストをつくる  
+ul#lesson内のliに、画像(div.lesson_img)と文章(div.lesson_info)を入れる。  
+```html
+<ul id="lessons">
+  <li>
+    <div class="lesson_img">
+      <img src="html.png" width="50" height="50" alt="">
+    </div>
+    <div class="lesson_info">
+      <h2>HTML入門</h2>
+      <p>Intro to HTML. Intro to HTML. Intro to HTML. Intro to HTML. Intro to HTML. Intro to HTML.</p>
+    </div>
+  </li>
+</ul>
+```
+まず表示を整える。  
+```css
+ul#lessons {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+ul#lessons h2,
+ul#lessons p  {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+```
+左右に割り振るためにそれぞれfloatでleft, rightに振って、  
+親要素のul#lessons>li に対して`overflow: hidden;`してclearfixする。  
+```css
+ul#lessons .lesson_img {
+  float: left;
+  width: 50px; /* 画像サイズとおなじ */
+}
+ul#lessons .lesson_info {
+  float: right;
+  width: 200px;
+}
+ul#lessons li {
+  overflow: hidden;
+}
+```
+複数になったとき間が詰まって見えるので、間隔をとって線(border)を入れる。  
+このとき、borderは疑似クラスを使って**最後だけ**線を入れないようにする。  
+```css
+ul#lessons li:not(:last-child) { /* 最後の子要素(last-child)、でないもの(not) */
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+```
+
+---
+作ったhtml  
+https://oratake.github.io/dotinstall_css_layout/index.html
