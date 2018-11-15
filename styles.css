@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-  width: 500px;
+  width: 80%;
   margin: 0 auto;
 }
 
@@ -28,16 +28,16 @@ main {
 
 #left {
   background: limegreen;
-  float: left;
-  width: 200px;
+  margin-right: 220px;
 }
 
 #right {
   background: lightgreen;
   float: right;
-  width: 300px;
+  width: 200px;
 }
 
+/* after模擬要素を使ったclearfix */
 .container::after {
   content: '';
   display: block;
